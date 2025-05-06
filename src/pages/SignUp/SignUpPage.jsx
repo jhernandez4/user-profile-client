@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import './SignUpPage.css';
+import axios from 'axios';
 
 const SignUpPage = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -23,9 +28,26 @@ const SignUpPage = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      setIsLoading(true);
+      setError(null);
+      setSuccess(false);
+      const payload = new FormData();
+
+      for (const key in formData) {
+        payload.append(key, formData[key]);
+      }
+      const submitResponse = await axios.post(`${backendUrl}/users`, payload);
+      console.log(submitResponse);
+      setSuccess(true);
+    } catch (error) {
+      setError(error.response.data.detail || 'An error occurred while signing up.');
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -61,6 +83,12 @@ const SignUpPage = () => {
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
 
         <button type="submit">Register</button>
+        {error &&
+          <div className="error-message">{error}</div>
+        }
+        {success &&
+          <div className="success-message">Account created successfully!</div>
+        }
       </form>
     </div>
   );
