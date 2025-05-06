@@ -36,7 +36,7 @@
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
@@ -48,6 +48,7 @@
 
 .primary-landing-btn:hover {
   background-color: #0056b3;
+  color: #ffffff;
 }
 
 .secondary-landing-btn {
@@ -56,6 +57,7 @@
   border: 2px solid #007bff;
 }
 
-.secondary-landing-btn {
+.secondary-landing-btn:hover {
   background-color: #e6f0ff;
+  color: #007bff;
 }
