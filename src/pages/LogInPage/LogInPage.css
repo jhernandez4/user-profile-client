@@ -36,7 +36,7 @@
     font-size: 1rem;
 }
 
-.login-form button {
+.login-form-button {
     width: 100%;
     margin-bottom: 10px;
     padding: 12px;
@@ -49,12 +49,6 @@
     transition: background-color 0.3s ease;
 }
 
-.login-form button:hover {
+.login-form-button:hover:not(:disabled) {
     background-color: #0056b3;
-}
-
-.login-form button:disabled {
-    background-color: #c6c6c6;
-    color: #6c757d;
-    cursor: wait;
 }

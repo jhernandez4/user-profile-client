@@ -74,6 +74,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+button:disabled {
+  background-color: #c6c6c6;
+  color: #6c757d;
+  cursor: wait;
+}
+
 .error-message {
   display: flex;
   align-items: center;

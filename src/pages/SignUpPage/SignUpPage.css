@@ -43,7 +43,7 @@
   min-height: 80px;
 }
 
-.signup-form button {
+.signup-form-button {
   width: 100%;
   padding: 12px;
   background: #007bff;
@@ -56,6 +56,6 @@
   margin: 10px 0;
 }
 
-.signup-form button:hover {
+.signup-form-button:hover:not(:disabled) {
   background-color: #0056b3;
 }

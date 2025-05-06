@@ -61,7 +61,7 @@ const LogInPage = () => {
           onChange={handleChange}
         />
 
-        <button type="submit" disabled={isLoading}>
+        <button className="login-form-button" type="submit" disabled={isLoading}>
           Log In
         </button>
         {error &&

@@ -43,7 +43,7 @@ const SignUpPage = () => {
       console.log(submitResponse);
       setSuccess(true);
     } catch (error) {
-      setError(error.response.data.detail || 'An error occurred while signing up.');
+      setError(error?.response?.data?.detail || 'An error occurred while signing up.');
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -82,7 +82,9 @@ const SignUpPage = () => {
         <label>Profile Picture {`(optional)`}</label>
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
 
-        <button type="submit">Register</button>
+        <button className='signup-form-button' type="submit" disabled={true}>
+          Register
+        </button>
         {error &&
           <div className="error-message">{error}</div>
         }
