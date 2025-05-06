@@ -4,12 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router-dom'
+import SignUpPage from './pages/SignUp/SignUpPage.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
   },
+  {
+    path: "/signup",
+    element: <SignUpPage/>,
+  }
 ])
 
 createRoot(document.getElementById('root')).render(
