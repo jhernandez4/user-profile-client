@@ -25,7 +25,6 @@ const SignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you’d send formData to your backend
     console.log(formData);
   };
 
@@ -39,6 +38,9 @@ const SignUpPage = () => {
 
         <label>Email*</label>
         <input type="email" name="email" required maxLength="255" onChange={handleChange} />
+
+        <label>Password*</label>
+        <input type="password" name="password" required minLength="1" onChange={handleChange} />
 
         <label>First Name*</label>
         <input type="text" name="first_name" required minLength="1" onChange={handleChange} />
@@ -54,9 +56,6 @@ const SignUpPage = () => {
 
         <label>Favorite Number*</label>
         <input type="number" name="favorite_number" required onChange={handleChange} />
-
-        <label>Password*</label>
-        <input type="password" name="password" required minLength="1" onChange={handleChange} />
 
         <label>Profile Picture {`(optional)`}</label>
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
