@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './LogInPage.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LogInPage = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -32,6 +34,7 @@ const LogInPage = () => {
       const submitResponse = await axios.post(`${backendUrl}/token`, payload);
       localStorage.setItem("access_token", submitResponse?.data.access_token);
       setSuccess(true);
+      navigate("/profile");
     } catch (error) {
       setError(error?.response?.data?.detail || 'An error occurred while logging in.');
       console.log(error);
