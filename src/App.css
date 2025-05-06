@@ -1,5 +1,4 @@
 .landing-container {
-  background: #f0f0f0;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -7,36 +6,32 @@
   justify-content: center;
 }
 
-/* Landing Card */
 .landing-card {
-  background: #ffffff;
   padding: 50px 40px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--app-border-color);
+  background-color: var(--app-fill-color);
+  box-shadow: var(--app-shadow)
 }
 
 .landing-card h1 {
   font-size: 2.2rem;
   margin-bottom: 15px;
-  color: #333;
 }
 
 .landing-card p {
   font-size: 1rem;
   margin-bottom: 30px;
-  color: #555;
 }
 
-/* Button Group */
-.button-group {
+.landing-btn-group {
   display: flex;
   gap: 20px;
   justify-content: center;
 }
 
-/* Buttons */
-.btn {
+.landing-btn {
   padding: 12px 28px;
   border-radius: 6px;
   text-decoration: none;
@@ -45,24 +40,22 @@
   cursor: pointer;
 }
 
-/* Primary (Signup) Button */
-.primary-btn {
+.primary-landing-btn {
   background-color: #007bff;
   color: #ffffff;
   border: none;
 }
 
-.primary-btn:hover {
+.primary-landing-btn:hover {
   background-color: #0056b3;
 }
 
-/* Secondary (Login) Button */
-.secondary-btn {
+.secondary-landing-btn {
   background-color: #ffffff;
   color: #007bff;
   border: 2px solid #007bff;
 }
 
-.secondary-btn:hover {
+.secondary-landing-btn {
   background-color: #e6f0ff;
 }
