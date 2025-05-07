@@ -3,7 +3,7 @@ import './UserProfile.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
-import { SquarePen } from 'lucide-react';
+import { Image, SquarePen } from 'lucide-react';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -116,9 +116,9 @@ const UserProfile = () => {
       <div className="profile-card">
         <div className="profile-picture-wrapper" onClick={() => openModal('profile_picture')}>
           <img src={`${backendUrl}${user?.profile_picture}`} alt="Profile Picture" className="profile-picture" />
-          {/* <div className="profile-picture-overlay">
-            <FiCamera size={20} />
-          </div> */}
+          <div className="profile-picture-overlay">
+            <Image/>
+          </div>
         </div>
 
         <div className="username-container profile-info-field" onClick={() => openModal('username')}>
