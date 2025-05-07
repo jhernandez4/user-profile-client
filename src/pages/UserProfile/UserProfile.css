@@ -33,7 +33,36 @@
   border: 2px solid #007bff;
 }
 
+.username-container {
+  display: flex;
+  justify-content: center;
+}
+
 .profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   text-align: left;
   list-style: none;
+}
+
+.profile-info-field {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info-field:hover {
+  cursor: pointer;
+}
+
+.edit-field-icon {
+  margin-left: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.profile-info-field:hover .edit-field-icon {
+  visibility: visible;
+  opacity: 1;
 }

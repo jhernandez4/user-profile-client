@@ -3,6 +3,7 @@ import './UserProfile.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
+import { SquarePen } from 'lucide-react';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -120,19 +121,29 @@ const UserProfile = () => {
           </div> */}
         </div>
 
-        <h2 onClick={() => openModal('username')}>
-          {user?.username}
-        </h2>
+        <div className="username-container profile-info-field" onClick={() => openModal('username')}>
+          <h2>
+            {user?.username}
+          </h2>
+          <SquarePen className="edit-field-icon" size={18}/>
+        </div>
+
 
         <ul className="profile-info">
           {fieldsList.map((field) => (
-            <li key={field} className="profile-info-field">
+            <li 
+            key={field} 
+            onClick={() => openModal(field)} 
+            className="profile-info-field"
+            >
               <strong>{fieldsMap[field]}</strong>
-              <span onClick={() => openModal(field)}>
+              <span >
+                {": "}
                 {field === 'birthday'
                   ? new Date(user[field]).toLocaleDateString()
                   : user[field]}
               </span>
+              <SquarePen className="edit-field-icon" size={18}/>
             </li>
           ))}
         </ul>
