@@ -1,0 +1,55 @@
+import React from 'react';
+import './EditModal.css';
+
+const EditModal = ({ field, value, onClose, onSave, onChange }) => {
+    const renderInput = () => {
+    if (field === 'profile_picture') {
+        return (
+        <input
+            type="file"
+            accept="image/*"
+            onChange={onChange}
+        />
+        );
+    } else if (field === 'favorite_number') {
+        return (
+        <input
+            type="number"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+        />
+        );
+    } else if (field === 'birthday') {
+        return (
+        <input
+            type="date"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+        />
+        );
+    } else {
+        return (
+        <input
+            type="text"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+        />
+        );
+    }
+    };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h3>Edit {field.replace('_', ' ')}</h3>
+        <div className="modal-input">{renderInput()}</div>
+        <div className="modal-actions">
+          <button className="modal-cancel" onClick={onClose}>Cancel</button>
+          <button className="modal-save" onClick={onSave}>Save</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EditModal;
