@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './UserProfile.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
@@ -22,6 +24,10 @@ const UserProfile = () => {
         console.log(response);
         setUser(response.data);
       } catch(error) {
+        if (error.status === 401){
+          navigate("/login");
+        }
+
         setError(error?.response?.data?.detail || 'An error occurred while logging in.');
         console.log(error);
       } finally {
