@@ -61,6 +61,10 @@
   justify-content: center;
 }
 
+.username-container .edit-field-icon {
+  top: 40%;
+}
+
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -74,6 +78,7 @@
 .profile-info-field {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .profile-info-field:hover {
@@ -81,7 +86,8 @@
 }
 
 .edit-field-icon {
-  margin-left: 8px;
+  margin-left: 10px;
+  position: absolute;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.4s ease;

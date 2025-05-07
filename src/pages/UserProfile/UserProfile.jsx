@@ -124,8 +124,9 @@ const UserProfile = () => {
         <div className="username-container profile-info-field" onClick={() => openModal('username')}>
           <h2>
             {user?.username}
+            <SquarePen className="edit-field-icon" size={18}/>
           </h2>
-          <SquarePen className="edit-field-icon" size={18}/>
+          
         </div>
 
 
@@ -137,13 +138,13 @@ const UserProfile = () => {
             className="profile-info-field"
             >
               <strong>{fieldsMap[field]}</strong>
-              <span >
+              <span>
                 {": "}
                 {field === 'birthday'
                   ? new Date(user[field]).toLocaleDateString()
                   : user[field]}
+                <SquarePen className="edit-field-icon" size={18}/>
               </span>
-              <SquarePen className="edit-field-icon" size={18}/>
             </li>
           ))}
         </ul>
