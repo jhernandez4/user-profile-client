@@ -43,6 +43,9 @@ const EditModal = ({ field, value, onClose, onSave, onChange }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h3>Edit {field.replace('_', ' ')}</h3>
         <div className="modal-input">{renderInput()}</div>
+        {field == "username" &&
+            <small>Changing your username will sign you out.</small>
+        }
         <div className="modal-actions">
           <button className="modal-cancel" onClick={onClose}>Cancel</button>
           <button className="modal-save" onClick={onSave}>Save</button>
