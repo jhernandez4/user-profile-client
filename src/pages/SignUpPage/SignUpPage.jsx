@@ -82,7 +82,7 @@ const SignUpPage = () => {
         <label>Profile Picture {`(optional)`}</label>
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
 
-        <button className='signup-form-button' type="submit" disabled={true}>
+        <button className='signup-form-button' type="submit" disabled={isLoading}>
           Register
         </button>
         {error &&
