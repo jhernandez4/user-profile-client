@@ -9,6 +9,8 @@ import { Skeleton } from '@mui/material';
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [fieldError, setFieldError] = useState(null);
+  const [fieldLoading, setFieldLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [editingField, setEditingField] = useState(null);
   const [fieldValue, setFieldValue] = useState('');
@@ -59,6 +61,7 @@ const UserProfile = () => {
       return;
     }
 
+    setFieldError(null);
     setEditingField(field);
     if (field === 'profile_picture') {
       setFile(null);
@@ -72,6 +75,8 @@ const UserProfile = () => {
 
   const handleSave = async () => {
     try {
+      setFieldError(null);
+      setFieldLoading(true);
       const userToken = localStorage.getItem("access_token");
 
       const formData = new FormData();
@@ -93,14 +98,15 @@ const UserProfile = () => {
         headers: { Authorization: `Bearer ${userToken}` }
       });
       setUser(response.data);
+      setEditingField(null);
     } catch (error) {
       if (error.status === 401){
         navigate("/login");
       }
-      setError(error?.response?.data?.detail || 'An error occurred while saving.');
+      setFieldError(error?.response?.data?.detail || 'An error occurred while saving.');
       console.log(error);
     } finally {
-      setEditingField(null);
+      setFieldLoading(false);
     }
   };
 
@@ -172,6 +178,8 @@ const UserProfile = () => {
 
       {editingField && (
         <EditModal
+          error={fieldError}
+          loading={fieldLoading}
           field={editingField}
           value={fieldValue}
           onClose={() => setEditingField(null)}

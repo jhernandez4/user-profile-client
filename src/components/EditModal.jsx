@@ -2,7 +2,7 @@ import React from 'react';
 import './EditModal.css';
 import { TriangleAlert } from 'lucide-react';
 
-const EditModal = ({ field, value, onClose, onSave, onChange }) => {
+const EditModal = ({ error, loading, field, value, onClose, onSave, onChange }) => {
     const renderInput = () => {
     if (field === 'profile_picture') {
         return (
@@ -44,6 +44,9 @@ const EditModal = ({ field, value, onClose, onSave, onChange }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h3>Edit {field.replace('_', ' ')}</h3>
         <div className="modal-input">{renderInput()}</div>
+        {error && (
+          <div className="error-message modal-error">{error}</div>
+        )}
         {field == "username" &&
           <small className="modal-username-warning">
             <TriangleAlert/> Changing your username will sign you out.
@@ -51,7 +54,7 @@ const EditModal = ({ field, value, onClose, onSave, onChange }) => {
         }
         <div className="modal-actions">
           <button className="modal-cancel" onClick={onClose}>Cancel</button>
-          <button className="modal-save" onClick={onSave}>Save</button>
+          <button className="modal-save" onClick={onSave} disabled={loading}>Save</button>
         </div>
       </div>
     </div>

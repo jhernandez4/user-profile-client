@@ -26,12 +26,20 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   color: rgb(219, 0, 0);
 }
 
-.modal-content h3 {
+.modal-error {
   margin-bottom: 20px;
+}
+
+.modal-content h3 {
+  margin: 0;
+}
+
+.modal-content input {
+  margin: 20px 0;
 }
 
 .modal-input input {
@@ -48,7 +56,6 @@
   justify-content: flex-end;
   align-items: center;
   gap: 15px;
-  margin-top: 20px;
 }
 
 .modal-cancel, .modal-save {
