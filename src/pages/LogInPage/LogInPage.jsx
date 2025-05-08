@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LogInPage.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -42,6 +42,33 @@ const LogInPage = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const authenticateUser = async () => {
+      try {
+        setIsLoading(true);
+        setError(false);
+        const userToken = localStorage.getItem("access_token");
+
+        if (!userToken) {
+          return;
+        }
+
+        const response = await axios.get(`${backendUrl}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        }
+        });
+        navigate("/profile")
+      } catch(error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    authenticateUser();
+  }, [])
 
   return (
     <div className="login-container">
