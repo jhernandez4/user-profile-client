@@ -116,3 +116,12 @@
   visibility: visible;
   opacity: 1;
 }
+
+.profile-password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  margin-top: 20px;
+}

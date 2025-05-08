@@ -24,7 +24,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
-.modal-username-warning {
+.modal-auth-warning {
   display: flex;
   justify-content: center;
   align-items: center;

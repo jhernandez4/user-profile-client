@@ -3,7 +3,7 @@ import './UserProfile.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
-import { House, Image, LogOut, SquarePen } from 'lucide-react';
+import { House, Image, KeyRound, LogOut, SquarePen } from 'lucide-react';
 import { Skeleton } from '@mui/material';
 
 const UserProfile = () => {
@@ -16,15 +16,20 @@ const UserProfile = () => {
   const [fieldValue, setFieldValue] = useState('');
   const [file, setFile] = useState(null);
   const fieldsMap = {
+    username: "Username",
     email: "Email",
     first_name: "First Name",
     last_name: "Last Name",
     biography: "Biography",
     favorite_number: "Favorite Number",
     birthday: "Birthday",
+    password: "Password"
   };
 
-  const fieldsList = Object.keys(fieldsMap);
+  const fieldsList = Object.keys(fieldsMap).filter(
+    (field) => field !== 'username' && field !== 'password'
+  );
+
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -68,6 +73,8 @@ const UserProfile = () => {
     } else if (field === 'birthday') {
       const dateValue = new Date(user[field]).toISOString().split('T')[0];
       setFieldValue(dateValue);
+    } else if (field === 'password') {
+      setFieldValue("");
     } else {
       setFieldValue(user[field]);
     }
@@ -102,13 +109,33 @@ const UserProfile = () => {
       const response = await axios.get(`${backendUrl}/users/me`, {
         headers: { Authorization: `Bearer ${userToken}` }
       });
+
+      // Changing username invalidates token automatically
+      // Remove access token on username change for consistency
+      if (editingField === "password" || editingField === "username") {
+        localStorage.removeItem("access_token");
+        navigate("/login");
+      }
+
       setUser(response.data);
       setEditingField(null);
     } catch (error) {
       if (error.status === 401){
         navigate("/login");
       }
-      setFieldError(error?.response?.data?.detail || 'An error occurred while saving.');
+
+      const errorDetail = error?.response?.data?.detail 
+
+      if (errorDetail[0]?.type){
+        if (errorDetail[0]?.type === "string_too_short") {
+          setFieldError(`${fieldsMap[editingField]} needs to be at least one character`)
+        } else if (errorDetail[0]?.type === "value_error") {
+          setFieldError(errorDetail[0]?.ctx.reason)
+        }
+      }  else {
+        setFieldError(errorDetail || 'An error occurred while saving.');
+      }
+
       console.log(error);
     } finally {
       setFieldLoading(false);
@@ -192,6 +219,10 @@ const UserProfile = () => {
             </li>
           ))}
         </ul>
+
+        <button className="profile-password" onClick={() => openModal("password")}>
+          Change password <KeyRound/> 
+        </button>
       </div>
 
       {editingField && (
