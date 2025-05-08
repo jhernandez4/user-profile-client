@@ -1,5 +1,6 @@
 import React from 'react';
 import './EditModal.css';
+import { TriangleAlert } from 'lucide-react';
 
 const EditModal = ({ field, value, onClose, onSave, onChange }) => {
     const renderInput = () => {
@@ -44,7 +45,9 @@ const EditModal = ({ field, value, onClose, onSave, onChange }) => {
         <h3>Edit {field.replace('_', ' ')}</h3>
         <div className="modal-input">{renderInput()}</div>
         {field == "username" &&
-            <small>Changing your username will sign you out.</small>
+          <small className="modal-username-warning">
+            <TriangleAlert/> Changing your username will sign you out.
+          </small>
         }
         <div className="modal-actions">
           <button className="modal-cancel" onClick={onClose}>Cancel</button>
