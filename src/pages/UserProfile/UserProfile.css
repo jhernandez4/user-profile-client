@@ -8,13 +8,23 @@
 
 .profile-card {
   background-color: var(--app-fill-color);
-  padding: 30px 25px;
+  padding: 30px 35px;
   margin: 2vh 2vw;
   border-radius: 12px;
   width: 100%;
   max-width: 600px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.profile-navbar {
+  display: flex;
+}
+
+.profile-navbar-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-picture-wrapper {
@@ -72,7 +82,7 @@
   justify-content: space-between;
   text-align: left;
   list-style: none;
-  padding: 0 2vw;
+  padding: 0;
   margin: 0;
 }
 

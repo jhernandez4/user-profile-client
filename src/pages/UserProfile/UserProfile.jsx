@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './UserProfile.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
-import { Image, SquarePen } from 'lucide-react';
+import { House, Image, SquarePen } from 'lucide-react';
 import { Skeleton } from '@mui/material';
 
 const UserProfile = () => {
@@ -81,6 +81,11 @@ const UserProfile = () => {
 
       const formData = new FormData();
       if (editingField === 'profile_picture') {
+        if (!file) {
+          setFieldError("Choose a file")
+          return;
+        }        
+
         formData.append("profile_picture", file);
       } else {
         formData.append(editingField, fieldValue);
@@ -119,6 +124,11 @@ const UserProfile = () => {
   return (
     <div className="profile-container">
       <div className="profile-card">
+        <nav className="profile-navbar">
+          <Link className="profile-navbar-item" to="/">
+            <House size={36}/>
+          </Link>
+        </nav>
         <div className="profile-picture-wrapper" onClick={() => openModal('profile_picture')}>
           {isLoading ? 
           <Skeleton variant={"circular"} height={120} width={120}/> 
