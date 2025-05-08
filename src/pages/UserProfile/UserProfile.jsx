@@ -115,7 +115,7 @@ const UserProfile = () => {
       <div className="profile-card">
         <div className="profile-picture-wrapper" onClick={() => openModal('profile_picture')}>
           {isLoading ? 
-          <Skeleton variant={"circular"} height={128} width={128}/> 
+          <Skeleton variant={"circular"} height={120} width={120}/> 
           : 
           <img src={`${backendUrl}${user?.profile_picture}`} alt="Profile Picture" className="profile-picture" />
           }
