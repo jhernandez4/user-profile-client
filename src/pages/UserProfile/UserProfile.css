@@ -67,12 +67,17 @@
 
 .profile-info {
   display: flex;
+  min-height: 40vh;
   flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
   text-align: left;
   list-style: none;
   padding: 0 2vw;
   margin: 0;
+}
+
+.field-key-skeleton {
+  margin-right: 8px;
 }
 
 .profile-info-field {

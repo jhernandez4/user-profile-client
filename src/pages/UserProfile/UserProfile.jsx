@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
 import { Image, SquarePen } from 'lucide-react';
+import { Skeleton } from '@mui/material';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -54,6 +55,10 @@ const UserProfile = () => {
   }, [])
 
   const openModal = (field) => {
+    if (isLoading) {
+      return;
+    }
+
     setEditingField(field);
     if (field === 'profile_picture') {
       setFile(null);
@@ -99,12 +104,6 @@ const UserProfile = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <p>Loading profile</p>
-    );
-  }
-
   if (error) {
     return (
       <p>Failed to load profile</p>
@@ -115,20 +114,28 @@ const UserProfile = () => {
     <div className="profile-container">
       <div className="profile-card">
         <div className="profile-picture-wrapper" onClick={() => openModal('profile_picture')}>
+          {isLoading ? 
+          <Skeleton variant={"circular"} height={128} width={128}/> 
+          : 
           <img src={`${backendUrl}${user?.profile_picture}`} alt="Profile Picture" className="profile-picture" />
+          }
           <div className="profile-picture-overlay">
             <Image/>
           </div>
         </div>
 
         <div className="username-container profile-info-field" onClick={() => openModal('username')}>
-          <h2>
-            {user?.username}
-            <SquarePen className="edit-field-icon" size={18}/>
-          </h2>
-          
+          {isLoading ? 
+            <h2>
+              <Skeleton variant="text" sx={{ fontSize: '1.7rem' }} width={180}/>
+            </h2>
+            :
+            <h2>
+              {user?.username}
+              <SquarePen className="edit-field-icon" size={18}/>
+            </h2>
+          }
         </div>
-
 
         <ul className="profile-info">
           {fieldsList.map((field) => (
@@ -137,14 +144,27 @@ const UserProfile = () => {
             onClick={() => openModal(field)} 
             className="profile-info-field"
             >
-              <strong>{fieldsMap[field]}</strong>
-              <span>
-                {": "}
-                {field === 'birthday'
-                  ? new Date(user[field]).toLocaleDateString()
-                  : user[field]}
-                <SquarePen className="edit-field-icon" size={18}/>
-              </span>
+              {isLoading ? (
+                <>
+                  <Skeleton className="field-key-skeleton" variant="text" sx={{ fontSize: '1.7rem' }} width={70}/>
+                  <Skeleton variant="text" sx={{ fontSize: '1.7rem' }} width={600}/>
+                </>
+              )
+              : (
+              <>
+                <strong>
+                  {fieldsMap[field]}
+                </strong>
+                
+                <span>
+                  {": "}
+                  {field === 'birthday'
+                    ? new Date(user[field]).toLocaleDateString()
+                    : user[field]}
+                  <SquarePen className="edit-field-icon" size={18}/>
+                </span>
+              </>
+              )}
             </li>
           ))}
         </ul>
