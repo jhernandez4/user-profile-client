@@ -19,12 +19,16 @@
 
 .profile-navbar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .profile-navbar-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  padding: 0;
 }
 
 .profile-picture-wrapper {

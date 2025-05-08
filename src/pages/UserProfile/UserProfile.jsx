@@ -3,7 +3,7 @@ import './UserProfile.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import EditModal from '../../components/EditModal';
-import { House, Image, SquarePen } from 'lucide-react';
+import { House, Image, LogOut, SquarePen } from 'lucide-react';
 import { Skeleton } from '@mui/material';
 
 const UserProfile = () => {
@@ -121,13 +121,21 @@ const UserProfile = () => {
     );
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('access_token');
+    navigate('/login');
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-card">
         <nav className="profile-navbar">
-          <Link className="profile-navbar-item" to="/">
+          <Link to="/" className="profile-navbar-item" title="Home">
             <House size={36}/>
           </Link>
+          <button onClick={handleLogOut} className="profile-navbar-item" title="Log out">
+            <LogOut size={36}/>
+          </button>
         </nav>
         <div className="profile-picture-wrapper" onClick={() => openModal('profile_picture')}>
           {isLoading ? 
