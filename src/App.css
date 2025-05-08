@@ -1,62 +1,82 @@
 .landing-container {
   width: 100%;
   min-height: 100vh;
+  padding: 15px 15vw;
   display: flex;
+  flex-direction: column;
+  background-color: #007bff;
+  color: white;
+}
+
+.brand-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  color: white;
 }
 
-.landing-card {
-  padding: 50px 40px;
-  border-radius: 10px;
-  text-align: center;
-  background-color: var(--app-fill-color);
-  box-shadow: var(--app-shadow)
+.brand-header h1 {
+  font-size: 2rem;
+  margin: 0;
 }
 
-.landing-card h1 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
+  margin: 10vh 0;
 }
 
-.landing-card p {
-  font-size: 1rem;
-  margin-bottom: 30px;
+.cta-section h2 {
+  margin: 0;
+  font-size: 3.5rem;
+  line-height: 2.8rem;
+}
+
+.cta-section h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.3rem;
+}
+
+.cta-subtext {
+  margin-top: 8px;
 }
 
 .landing-btn-group {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .landing-btn {
-  padding: 12px 28px;
-  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #007bff;
+  height: 40px;
+  max-width: 250px;
+  width: 100%;
+  border-radius: 15px;
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
-.primary-landing-btn {
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-}
-
-.primary-landing-btn:hover {
+.landing-btn:hover {
   background-color: #0056b3;
   color: #ffffff;
 }
 
-.secondary-landing-btn {
-  background-color: #ffffff;
-  color: #007bff;
-  border: 2px solid #007bff;
-}
+@media (max-width: 768px) {
+  .landing-container {
+    padding: 15px 4vw;
+  }
 
-.secondary-landing-btn:hover {
-  background-color: #e6f0ff;
-  color: #007bff;
+  .cta-section {
+    width: 90vw;
+  }
 }
