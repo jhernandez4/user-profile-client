@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './SignUpPage.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const SignUpPage = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -82,6 +83,7 @@ const SignUpPage = () => {
         <label>Profile Picture {`(optional)`}</label>
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
 
+        <p className="auth-question">Already have an account? <Link to="/login">Log in</Link></p>
         <button className='signup-form-button' type="submit" disabled={isLoading}>
           Register
         </button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LogInPage.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LogInPage = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -63,6 +63,8 @@ const LogInPage = () => {
           required
           onChange={handleChange}
         />
+
+        <p className="auth-question">Don't have an account? <Link to="/signup">Sign up</Link></p>
 
         <button className="login-form-button" type="submit" disabled={isLoading}>
           Log In

@@ -52,3 +52,11 @@
 .login-form-button:hover:not(:disabled) {
     background-color: #0056b3;
 }
+
+.auth-question {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    gap: 5px;
+    margin-bottom: 20px;
+}
