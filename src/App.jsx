@@ -17,7 +17,7 @@ function App() {
           <h3>Create your profile now.</h3>
         </div>
       </section>
-      <h3>I want to:</h3>
+      <h2>I want to:</h2>
       <div className="landing-btn-group">
         <a href="/signup" className="landing-btn primary-landing-btn">Sign Up</a>
         <a href="/login" className="landing-btn secondary-landing-btn">Log In</a>

@@ -40,7 +40,11 @@
 }
 
 .cta-subtext {
-  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 4px;
+
 }
 
 .landing-btn-group {
@@ -78,5 +82,27 @@
 
   .cta-section {
     width: 90vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-btn-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .primary-landing-btn, .secondary-landing-btn {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 416px) {
+  .brand-header a {
+    display: none;
+  }
+
+  .brand-header {
+    justify-content: center;
   }
 }
