@@ -44,14 +44,15 @@ const EditModal = ({ error, loading, field, value, onClose, onSave, onChange }) 
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h3>Edit {field.replace('_', ' ')}</h3>
         <div className="modal-input">{renderInput()}</div>
-        {error && (
-          <div className="error-message modal-error">{error}</div>
-        )}
         {field == "username" &&
           <small className="modal-username-warning">
             <TriangleAlert/> Changing your username will sign you out.
           </small>
         }
+
+        {error && (
+          <div className="error-message">{error}</div>
+        )}
         <div className="modal-actions">
           <button className="modal-cancel" onClick={onClose}>Cancel</button>
           <button className="modal-save" onClick={onSave} disabled={loading}>Save</button>
