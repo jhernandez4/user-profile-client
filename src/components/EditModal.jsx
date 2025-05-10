@@ -1,6 +1,6 @@
 import React from 'react';
 import './EditModal.css';
-import { TriangleAlert } from 'lucide-react';
+import { CircleAlert, TriangleAlert } from 'lucide-react';
 
 const EditModal = ({ error, loading, field, value, onClose, onSave, onChange }) => {
     const renderInput = () => {
@@ -57,6 +57,12 @@ const EditModal = ({ error, loading, field, value, onClose, onSave, onChange }) 
           <small className="modal-auth-warning">
             <TriangleAlert/> Changing your {field} will sign you out.
           </small>
+        }
+
+        {field === "profile_picture" &&
+        <small className="modal-image-warning">
+          <CircleAlert color="orange"/> Only JPG or JPEG files are allowed for profile pictures.
+        </small>
         }
 
         {error && (
