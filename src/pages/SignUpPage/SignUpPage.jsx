@@ -24,7 +24,9 @@ const SignUpPage = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'profile_picture') {
-      setFormData({ ...formData, [name]: files[0] });
+      // If no file is selected, set the profile picture to null
+      const selectedFile = files && files[0] ? files[0] : null;
+      setFormData({ ...formData, [name]: selectedFile });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -39,13 +41,30 @@ const SignUpPage = () => {
       const payload = new FormData();
 
       for (const key in formData) {
-        payload.append(key, formData[key]);
+        // Only append profile_picture if it's not null or an empty string
+        if (key === 'profile_picture' && formData[key] !== null && formData[key] !== '') {
+          payload.append(key, formData[key]);
+        } else if (key !== 'profile_picture') {
+          payload.append(key, formData[key]);
+        }
       }
+
       const submitResponse = await axios.post(`${backendUrl}/users`, payload);
       console.log(submitResponse);
       setSuccess(true);
     } catch (error) {
-      setError(error?.response?.data?.detail || 'An error occurred while signing up.');
+      const errorDetail = error?.response?.data?.detail 
+
+      if (errorDetail[0]?.type){
+        if (errorDetail[0]?.type === "string_too_short") {
+          setError(`${fieldsMap[editingField]} needs to be at least one character`)
+        } else if (errorDetail[0]?.type === "value_error") {
+          setError(errorDetail[0]?.ctx.reason)
+        }
+      }  else {
+        setError(errorDetail || 'An error occurred while saving.');
+      }
+
       console.log(error);
     } finally {
       setIsLoading(false);
