@@ -7,7 +7,7 @@ cd user-profile-client
 
 2. Create an `.env` file
 * In the root of your directory, create a file named `.env`
-* Add the following line to the \`.env\` file to specify your backend URL:
+* Add the following line to the `.env` file to specify your backend URL:
 ```bash
 VITE_BACKEND_URL="http://127.0.0.1:8000"
 ```
