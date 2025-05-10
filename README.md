@@ -20,4 +20,4 @@ npm run dev
 
 **4. Make sure that the backend is running in a separate window to register, login, and edit your profile**
 * The backend repository can be found here:
-`https://github.com/jhernandez4/user-profile`
+https://github.com/jhernandez4/user-profile
