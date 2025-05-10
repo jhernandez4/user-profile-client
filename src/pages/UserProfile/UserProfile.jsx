@@ -33,6 +33,14 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+  const getImageUrl = (imagePath) => {
+    // Check if the image path starts with "/images", which means it's from the backend
+    if (imagePath && imagePath.startsWith('/images')) {
+      return `${backendUrl}${imagePath}`; 
+    }
+    return imagePath; // If it's an external URL, return it as is
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -168,7 +176,7 @@ const UserProfile = () => {
           {isLoading ? 
           <Skeleton variant={"circular"} height={120} width={120}/> 
           : 
-          <img src={`${backendUrl}${user?.profile_picture}`} alt="Profile Picture" className="profile-picture" />
+          <img src={getImageUrl(user?.profile_picture)} alt="Profile Picture" className="profile-picture" />
           }
           <div className="profile-picture-overlay">
             <Image/>
