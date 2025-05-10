@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './SignUpPage.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { CircleAlert } from 'lucide-react';
 
 const SignUpPage = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -83,10 +84,15 @@ const SignUpPage = () => {
         <label>Profile Picture {`(optional)`}</label>
         <input type="file" name="profile_picture" accept="image/*" onChange={handleChange} />
 
-        <p className="auth-question">Already have an account? <Link to="/login">Log in</Link></p>
+        <small className="profile-image-warning">
+          <CircleAlert color="orange"/> Only JPG or JPEG files are allowed for profile pictures.
+        </small>
+
         <button className='signup-form-button' type="submit" disabled={isLoading}>
           Register
         </button>
+
+        <p className="auth-question">Already have an account? <Link to="/login">Log in</Link></p>
         {error &&
           <div className="error-message">{error}</div>
         }

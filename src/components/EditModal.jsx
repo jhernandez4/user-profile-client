@@ -60,7 +60,7 @@ const EditModal = ({ error, loading, field, value, onClose, onSave, onChange }) 
         }
 
         {field === "profile_picture" &&
-        <small className="modal-image-warning">
+        <small className="profile-image-warning">
           <CircleAlert color="orange"/> Only JPG or JPEG files are allowed for profile pictures.
         </small>
         }

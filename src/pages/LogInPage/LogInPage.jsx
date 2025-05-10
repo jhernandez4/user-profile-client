@@ -91,11 +91,11 @@ const LogInPage = () => {
           onChange={handleChange}
         />
 
-        <p className="auth-question">Don't have an account? <Link to="/signup">Sign up</Link></p>
-
         <button className="login-form-button" type="submit" disabled={isLoading}>
           Log In
         </button>
+
+        <p className="auth-question">Don't have an account? <Link to="/signup">Sign up</Link></p>
         {error &&
             <div className="error-message">{error}</div>
         }

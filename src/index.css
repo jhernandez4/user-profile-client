@@ -97,6 +97,15 @@ button:disabled {
   animation: fadeIn 1s ease-in-out forwards;
 }
 
+.profile-image-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
